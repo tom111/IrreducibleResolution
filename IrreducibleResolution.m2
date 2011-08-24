@@ -17,11 +17,18 @@ newPackage(
 export {
      -- Semigroup functions
      semigroup,
-     beautifySemigroup
+     semigroupCone,
+     beautifySemigroup,
+     semigroupIsPointed
      }
 
 needsPackage "Polyhedra";
 needsPackage "Binomials";
+
+
+-- check wether a semigroup is pointed by examing it's cone
+semigroupIsPointed = method (TypicalValue=>Boolean)
+semigroupIsPointed Matrix := s -> isPointed posHull s
 
 isZero = v -> (
      -- testing if a vector (list) is zero
@@ -47,13 +54,18 @@ semigroup = I -> (
 	 hashTable pack (2, mingle (entries P, entries snf)), 
 	 isZero))
 
-semigroupCone = I -> posHull semigroup I;
+-- Return the cone that contains the semigroup from an Ideal
+semigroupCone = method(TypicalValue=>Cone)
+semigroupCone Ideal := I -> posHull semigroup I;
+semigroupCone Matrix := s -> posHull s;
+
 
 TEST ///
 R = QQ[a..d];
 I = ideal(a*d-b*c)
 sg = semigroup I
 needsPackage "FourTiTwo"
+assert (semigroupIsPointed sg)
 assert (I == toBinomial (toricMarkov (sg), R))
 ///
 
