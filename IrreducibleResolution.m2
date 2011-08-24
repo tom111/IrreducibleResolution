@@ -1,7 +1,7 @@
 -- distributed under the GPLv2 or later.
 
 newPackage(
-	"IrreducibleResolutions",
+	"IrreducibleResolution",
 	Version => "0.1",
 	Date => "August 2011",
 	Authors => {{
