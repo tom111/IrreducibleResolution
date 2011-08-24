@@ -19,7 +19,8 @@ export {
      semigroup,
      semigroupCone,
      beautifySemigroup,
-     semigroupIsPointed
+     semigroupIsPointed,
+     semigroupIsGraded
      }
 
 needsPackage "Polyhedra";
