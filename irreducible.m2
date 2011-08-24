@@ -16,7 +16,7 @@ newPackage(
    
 export {
      -- Semigroup functions
-     semigroup
+     semigroup,
      beautifySemigroup
      }
 
@@ -49,12 +49,13 @@ semigroup = I -> (
 
 semigroupCone = I -> posHull semigroup I;
 
--- TEST ///
--- R = QQ[a..d]
--- I = ideal(a*d-b*c)
--- sg = semigroup I
--- needsPackage "FourTiTwo"
--- ///
+TEST ///
+R = QQ[a..d];
+I = ideal(a*d-b*c)
+sg = semigroup I
+needsPackage "FourTiTwo"
+assert (I == toBinomial (toricMarkov (sg), R))
+///
 
 -- Local Variables:
 -- fill-column: 72
