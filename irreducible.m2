@@ -1,5 +1,25 @@
 -- distributed under the GPLv2 or later.
 
+newPackage(
+	"IrreducibleResolutions",
+	Version => "0.1",
+	Date => "August 2011",
+	Authors => {{
+		  Name => "Thomas Kahle",
+		  Email => "kahle@mis.mpg.de",
+		  HomePage => "https://github.com/tom111/IrreducibleResolution"}},
+    	Headline => "Irreducible Resolutions over affine semigroup rings",
+	Configuration => { },
+    	DebuggingMode => true,
+	Reload=>true
+    	)
+   
+export {
+     -- Semigroup functions
+     semigroup
+     beautifySemigroup
+     }
+
 needsPackage "Polyhedra";
 needsPackage "Binomials";
 
@@ -33,6 +53,7 @@ semigroupCone = I -> posHull semigroup I;
 -- R = QQ[a..d]
 -- I = ideal(a*d-b*c)
 -- sg = semigroup I
+-- needsPackage "FourTiTwo"
 -- ///
 
 -- Local Variables:
