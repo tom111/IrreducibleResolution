@@ -31,6 +31,12 @@ needsPackage "Binomials";
 semigroupIsPointed = method (TypicalValue=>Boolean)
 semigroupIsPointed Matrix := s -> isPointed posHull s
 
+semigroupIsGraded = s -> (
+     kern := transpose kernel s;
+     apply (entries kern, row -> (
+	       if not sum row == 0 then return false));
+     true)
+
 isZero = v -> (
      -- testing if a vector (list) is zero
      for e in v do if not e==0 then return false else continue;
@@ -67,6 +73,7 @@ I = ideal(a*d-b*c)
 sg = semigroup I
 needsPackage "FourTiTwo"
 assert (semigroupIsPointed sg)
+assert (semigroupIsGraded sg)
 assert (I == toBinomial (toricMarkov (sg), R))
 ///
 
