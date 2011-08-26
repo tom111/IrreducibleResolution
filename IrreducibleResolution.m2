@@ -11,27 +11,27 @@ newPackage(
     	Headline => "Irreducible Resolutions over affine semigroup rings",
 	Configuration => { },
     	DebuggingMode => true,
+	PackageExports => {"Polyhedra"},
 	Reload=>true
     	)
+
+needsPackage "Polyhedra";
+needsPackage "Binomials";
    
 export {
      -- Semigroup functions
      semigroup,
      semigroupCone,
      beautifySemigroup,
-     semigroupIsPointed,
+     -- isPointed is is exported from the polyhedra package, we just
+     -- give an implementation for the type Matrix.
      semigroupIsGraded,
      -- Ring related
      makeMultigradedRing
      }
 
-needsPackage "Polyhedra";
-needsPackage "Binomials";
-
-
 -- check wether a semigroup is pointed by examing it's cone
-semigroupIsPointed = method (TypicalValue=>Boolean)
-semigroupIsPointed Matrix := s -> isPointed posHull s
+isPointed Matrix := s -> isPointed posHull s
 
 semigroupIsGraded = s -> (
      kern := transpose gens kernel s;
@@ -116,7 +116,7 @@ R = QQ[a..d];
 I = ideal(a*d-b*c)
 sg = semigroup I
 needsPackage "FourTiTwo"
-assert (semigroupIsPointed sg)
+assert (isPointed sg)
 assert (semigroupIsGraded sg)
 assert (I == toBinomial (toricMarkov (sg), R))
 assert (I == toBinomial (toricMarkov (beautifySemigroup sg), R))
