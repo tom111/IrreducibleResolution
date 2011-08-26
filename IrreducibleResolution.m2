@@ -20,7 +20,9 @@ export {
      semigroupCone,
      beautifySemigroup,
      semigroupIsPointed,
-     semigroupIsGraded
+     semigroupIsGraded,
+     -- Ring related
+     makeMultigradedRing
      }
 
 needsPackage "Polyhedra";
@@ -99,6 +101,14 @@ beautifySemigroup = sg -> (
 semigroupCone = method(TypicalValue=>Cone)
 semigroupCone Ideal := I -> posHull semigroup I;
 semigroupCone Matrix := s -> posHull s;
+
+makeMultigradedRing = I -> (
+     -- Given a toric ideal in a polynomial ring, this will return the
+     -- multigraded affine semigroup ring kk[x]/I with the multigrading
+     -- installed.
+     sg := beautifySemigroup semigroup I;
+     R' := newRing (ring I, Degrees=>entries transpose sg);
+     R'/sub(I,R'))
 
 
 TEST ///

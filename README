@@ -1,1 +1,13 @@
+-*- mode: org; fill-column: 75; -*-
+
 Functions for irreducible resolutions in Macaulay2
+==================================================
+
+* Conventions
+- Semigroups generators are _rows_ of matrices
+- Affine semigroup rings are represented as quotients of polynomial rings
+  module toric ideals. They can be created with makeMultigradedRing.
+
+
+
+
