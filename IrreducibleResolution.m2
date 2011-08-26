@@ -32,7 +32,7 @@ semigroupIsPointed = method (TypicalValue=>Boolean)
 semigroupIsPointed Matrix := s -> isPointed posHull s
 
 semigroupIsGraded = s -> (
-     kern := transpose kernel s;
+     kern := transpose gens kernel s;
      apply (entries kern, row -> (
 	       if not sum row == 0 then return false));
      true)
