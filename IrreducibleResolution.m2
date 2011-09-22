@@ -57,7 +57,7 @@ semigroup = I -> (
 
     -- get the lattice using the Binomials package
     R := ring I;
-    pchar := partialCharacter(I, cellVariables=> gens R);
+    pchar := partialCharacter(I, CellVariables=> gens R);
     lattice := pchar#"L";
     
     (snf,P,Q) := smithNormalForm lattice;
